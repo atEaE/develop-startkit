@@ -1,0 +1,27 @@
+settings:
+  legacy: 
+    force: true
+    interval: 1s
+server:
+  status: false
+  open: false
+  port: 9999
+  host: localhost
+schema: 
+- name: realize
+  path: .
+  commands:
+    install:
+      status: true
+      method: go build -o urge-go main.go
+    run:
+      status: true
+      method: ./urge-go
+  watcher:
+    paths:
+      - /
+    extensions:
+      - go
+      - html
+      - css
+      - js
