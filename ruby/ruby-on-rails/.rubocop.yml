@@ -1,0 +1,33 @@
+# target_version : rubocop v0.79.0
+
+inherit_from: .rubocop_todo.yml
+
+require:
+  - "rubocop-rails"
+
+# 自動生成物を中心に除外
+AllCops:
+  TargetRubyVersion: 2.6.5
+  Exclude:
+    - db/seeds.rb
+    - bin/**
+    - config/**/*
+    - node_modules/**/*
+    - tmp/**/*
+
+
+# 日本語の使用を許可
+Style/AsciiComments:
+  Enabled: false
+
+# 固定長文字リテラルを許可
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 1行あたりの最大文字数を設定
+Layout/LineLength:
+  Max: 142
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false

@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  db:
+    container_name: photop_db
+    image: mysql:5.7.28
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: photop_development
+    tty: true
+    ports:
+      - 3306:3306
+    command: mysqld --character-set-server=utf8mb4 --explicit_defaults_for_timestamp=true
+    
+  app:
+    container_name: photop_app
+    build:
+      context: .
+    volumes:
+      - .:/app
+    environment:
+      RAILS_ENV:  development
+    ports:
+      - 3000:3000
+      - 1234:1234
+      - 26162:26162
+    tty: true
+    depends_on: 
+      - db
